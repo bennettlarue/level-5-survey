@@ -1,0 +1,22 @@
+[
+    { 
+        "Type": "TestMenu1",
+        "Text": "What foods do you like?",
+        "Selections": [
+            "Sandwich",
+            "Soup",
+            "Salad",
+            "Dinner",
+            "Dessert",
+            "Snack",
+            "Other",
+            "None",
+            "I don't know",
+            "I don't eat"
+        ]
+    },
+    { 
+        "Type": "YesNo",
+        "Text": "Hav you had lunch?"
+    }
+]
