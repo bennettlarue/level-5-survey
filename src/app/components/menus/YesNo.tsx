@@ -1,25 +1,29 @@
 import React from "react";
-import PrimaryHeading from "../text/PrimaryHeading";
-import SecondaryHeading from "../text/SecondaryHeading";
 import Yes from "../buttons/Yes";
 import No from "../buttons/No";
+import BaseMenu from "./BaseMenu";
 
 type Props = {
+    index: number;
+    currentAnswer: string[];
+    updateAnswer: (question: number, answer: string[]) => void;
     text: string;
 };
 
 const YesNo = (props: Props) => {
-    const [yes, setYes] = React.useState(false);
-
     return (
-        <>
-            <PrimaryHeading text={props.text} />
-
+        <BaseMenu index={props.index} heading={props.text}>
             <div className="flex items-center justify-center space-x-12">
-                <Yes selected={yes} onClick={() => setYes(true)} />
-                <No selected={!yes} onClick={() => setYes(false)} />
+                <Yes
+                    selected={props.currentAnswer[0] === "yes"}
+                    onClick={() => props.updateAnswer(props.index, ["yes"])}
+                />
+                <No
+                    selected={props.currentAnswer[0] === "no"}
+                    onClick={() => props.updateAnswer(props.index, ["no"])}
+                />
             </div>
-        </>
+        </BaseMenu>
     );
 };
 

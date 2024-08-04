@@ -7,6 +7,7 @@ type Props = {
     onClick: () => void;
     selected: boolean;
     text: string;
+    delay?: number;
 };
 
 const Select = (props: Props) => {
@@ -14,6 +15,7 @@ const Select = (props: Props) => {
         <IconButton
             onClick={() => props.onClick()}
             text={props.text}
+            delay={props.delay}
             background={
                 props.selected
                     ? "bg-l5Pink shadow-inner-lg"

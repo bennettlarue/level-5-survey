@@ -9,31 +9,56 @@ import { useState } from "react";
 import SelectMultiple from "./components/menus/SelectMultiple";
 import YesNo from "./components/menus/YesNo";
 import PrimaryHeading from "./components/text/PrimaryHeading";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 console.log(MenuConfig);
 
 export default function Home() {
     const [menu, setMenu] = useState(1);
-    console.log(MenuConfig[menu]);
+    const [answers, setAnswers] = useState<string[][]>(
+        Array.from({ length: 10 }, () => [])
+    );
+
+    const updateAnswer = (question: number, answer: string[]) => {
+        const newAnswers = [...answers];
+        newAnswers[question] = answer;
+        setAnswers(newAnswers);
+    };
+
+    const handleNext = () => {
+        if (menu < MenuConfig.length - 1) {
+            setMenu(menu + 1);
+        } else {
+            setMenu(0);
+        }
+    };
 
     return (
         <main>
             <div className="max-w-[1000px] mx-auto pt-16">
-                <div className="space-y-5 h-[500px] flex items-center justify-center">
-                    <div className="space-y-10 text-center">
-                        {MenuConfig[menu].Type === "TestMenu1" ? (
-                            <SelectMultiple
-                                text={MenuConfig[menu].Text}
-                                selections={MenuConfig[menu].Selections}
-                            />
-                        ) : (
-                            <YesNo text={MenuConfig[menu].Text} />
-                        )}
-                    </div>
-                </div>
+                <AnimatePresence mode="wait">
+                    {MenuConfig[menu].Type === "TestMenu1" ? (
+                        <SelectMultiple
+                            currentAnswer={answers[menu]}
+                            updateAnswer={updateAnswer}
+                            index={menu}
+                            text={MenuConfig[menu].Text}
+                            selections={MenuConfig[menu].Selections}
+                        />
+                    ) : (
+                        <YesNo
+                            index={menu}
+                            currentAnswer={answers[menu]}
+                            updateAnswer={updateAnswer}
+                            text={MenuConfig[menu].Text}
+                        />
+                    )}
+                </AnimatePresence>
+
                 <div className="flex items-center justify-between mx-auto space-x-5">
                     <Back onClick={() => setMenu(menu - 1)} />
-                    <Next onClick={() => setMenu(menu + 1)} />
+                    <Next onClick={handleNext} />
                 </div>
             </div>
         </main>

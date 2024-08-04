@@ -3,19 +3,18 @@ import { IconButton } from "./IconButton";
 import XIcon from "../Svgs/XIcon";
 
 type Props = {
+    text: string;
     onClick: () => void;
-    selected: boolean;
 };
 
-const No = (props: Props) => {
+const CustomText = (props: Props) => {
     return (
         <IconButton
             onClick={props.onClick}
-            text="No"
+            text={props.text}
             icon={<XIcon />}
-            background={props.selected ? "bg-pink-700" : "bg-l5Pink"}
         />
     );
 };
 
-export default No;
+export default CustomText;
