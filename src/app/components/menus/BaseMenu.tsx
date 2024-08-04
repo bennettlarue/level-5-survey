@@ -19,7 +19,7 @@ const BaseMenu = (props: Props) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             layout
-            className="space-y-5 h-[500px] flex items-center justify-center bg-l5White shadow border rounded"
+            className="space-y-5 h-[500px] flex items-center justify-center bg-l5GrayWhite shadow border rounded"
         >
             <div className="space-y-10 text-center mx-6">
                 {props.icon && (

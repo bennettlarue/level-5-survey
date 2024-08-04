@@ -1,6 +1,6 @@
 [
     { 
-        "Type": "TestMenu1",
+        "Type": "SelectMultiple",
         "Text": "What foods do you like?",
         "Selections": [
             "Sandwich",
@@ -17,6 +17,24 @@
     },
     { 
         "Type": "YesNo",
-        "Text": "Hav you had lunch?"
+        "Text": "Have you had lunch?"
+    },
+    { 
+        "Type": "SelectOne",
+        "Text": "What is your favorite food?",
+        "Selections": [
+            "Sandwich",
+            "Soup",
+            "Salad",
+            "Burger",
+            "Sushi"
+        ]
+    },
+    {
+        "Type": "NumberEntry",
+        "Text": "How long ago was your last lunch?",
+        "Label1": "Days",
+        "Label2": "Hours"
     }
+    
 ]
