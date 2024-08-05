@@ -11,13 +11,7 @@ const SubtractIcon = (props: Props) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <path
-                d="M5 12H19"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
+            <path d="M5 12H19" stroke="currentColor" strokeWidth="2" />
         </svg>
     );
 };

@@ -14,6 +14,7 @@ type Props = {
     updateAnswer: (question: number, answer: string[]) => void; // Changed from string[] to string
     text: string;
     selections?: string[];
+    icon?: JSX.Element;
 };
 
 const SelectOne = (props: Props) => {
@@ -22,28 +23,30 @@ const SelectOne = (props: Props) => {
     const handleOpenMenu = () => setMenuOpen(true);
     const handleCloseMenu = () => setMenuOpen(false);
     const handleSubmit = (text: string) => {
-        props.updateAnswer(props.index, [text]); // Remove the spread operator and array
+        props.updateAnswer(props.index, [text]);
     };
-
-    console.log(props.currentAnswer);
 
     return (
         <BaseMenu
             index={props.index}
             heading={props.text}
-            icon={<AddIcon />}
+            icon={props.icon}
             subheading="Please select one of the options."
         >
             <div className="flex flex-wrap items-center justify-center gap-5">
-                <AnimatePresence mode="wait">
+                <AnimatePresence>
                     {props.selections?.map((selection, index) => (
                         <Select
                             key={index}
                             text={selection}
                             selected={props.currentAnswer[0] === selection}
-                            onClick={() =>
-                                props.updateAnswer(props.index, [selection])
-                            }
+                            onClick={() => {
+                                props.currentAnswer[0] === selection
+                                    ? props.updateAnswer(props.index, [])
+                                    : props.updateAnswer(props.index, [
+                                          selection,
+                                      ]);
+                            }}
                         />
                     ))}
                     {props.currentAnswer &&
@@ -51,9 +54,7 @@ const SelectOne = (props: Props) => {
                     !props.selections?.includes(props.currentAnswer[0]) ? (
                         <CustomText
                             text={props.currentAnswer[0]}
-                            onClick={() =>
-                                props.updateAnswer(props.index, [""])
-                            }
+                            onClick={() => props.updateAnswer(props.index, [])}
                         />
                     ) : (
                         <Add onClick={handleOpenMenu} />

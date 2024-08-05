@@ -13,7 +13,11 @@ const No = (props: Props) => {
             onClick={props.onClick}
             text="No"
             icon={<XIcon />}
-            background={props.selected ? "bg-pink-700" : "bg-l5Pink"}
+            background={
+                props.selected
+                    ? "bg-l5Pink shadow-inner"
+                    : "bg-l5Green bg-opacity-80 hover:bg-opacity-100 shadow"
+            }
         />
     );
 };

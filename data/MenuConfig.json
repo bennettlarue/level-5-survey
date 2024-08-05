@@ -2,6 +2,7 @@
     { 
         "Type": "SelectMultiple",
         "Text": "What foods do you like?",
+        "Icon": "HeartIcon",
         "Selections": [
             "Sandwich",
             "Soup",
@@ -9,19 +10,18 @@
             "Dinner",
             "Dessert",
             "Snack",
-            "Other",
-            "None",
-            "I don't know",
-            "I don't eat"
+            "Other"
         ]
     },
     { 
         "Type": "YesNo",
-        "Text": "Have you had lunch?"
+        "Text": "Have you had lunch?",
+        "Icon": "HeartIcon"
     },
     { 
         "Type": "SelectOne",
         "Text": "What is your favorite food?",
+        "Icon": "HeartIcon",
         "Selections": [
             "Sandwich",
             "Soup",
@@ -33,8 +33,14 @@
     {
         "Type": "NumberEntry",
         "Text": "How long ago was your last lunch?",
+        "Icon": "HeartIcon",
         "Label1": "Days",
         "Label2": "Hours"
+    },
+    {
+        "Type": "TextEntry",
+        "Text": "What is your favorite color?",
+        "Icon": "HeartIcon"
     }
     
 ]

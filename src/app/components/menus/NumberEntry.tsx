@@ -7,42 +7,56 @@ type Props = {
     index: number;
     currentAnswer: string[];
     updateAnswer: (question: number, answer: string[]) => void;
+    icon: JSX.Element;
     text: string;
     label1: string;
     label2: string;
 };
 
 const NumberEntry = (props: Props) => {
+    // Ensure currentAnswer always has two elements, defaulting to "0" if undefined or empty
+    const safeCurrentAnswer = [
+        props.currentAnswer[0] || "0",
+        props.currentAnswer[1] || "0",
+    ];
+
     const handleIncrement = (index: number) => {
-        const newAnswer = [...props.currentAnswer];
-        const currentValue = parseInt(newAnswer[index] || "0", 10);
+        const newAnswer = [...safeCurrentAnswer];
+        const currentValue = parseInt(newAnswer[index], 10);
         newAnswer[index] = (currentValue + 1).toString();
         props.updateAnswer(props.index, newAnswer);
     };
 
     const handleDecrement = (index: number) => {
-        const newAnswer = [...props.currentAnswer];
-        const currentValue = parseInt(newAnswer[index] || "0", 10);
+        const newAnswer = [...safeCurrentAnswer];
+        const currentValue = parseInt(newAnswer[index], 10);
         newAnswer[index] = Math.max(0, currentValue - 1).toString();
         props.updateAnswer(props.index, newAnswer);
     };
 
     const handleChange = (index: number, value: string) => {
-        const newAnswer = [...props.currentAnswer];
-        newAnswer[index] = value;
+        const newAnswer = [...safeCurrentAnswer];
+        newAnswer[index] = value || "0"; // Set to "0" if value is empty
         props.updateAnswer(props.index, newAnswer);
     };
 
+    console.log(safeCurrentAnswer);
+
     return (
-        <BaseMenu index={props.index} heading={props.text}>
+        <BaseMenu index={props.index} heading={props.text} icon={props.icon}>
             <div className="flex items-center justify-center space-x-12">
                 <div className="space-y-3">
                     <Note text={props.label1} />
                     <NumberInput
-                        index={props.index}
+                        index={0}
                         onChange={(e) => handleChange(0, e.target.value)}
-                        currentAnswer={props.currentAnswer[0] || "0"}
-                        updateAnswer={props.updateAnswer}
+                        currentAnswer={safeCurrentAnswer[0]}
+                        updateAnswer={(_, value) =>
+                            props.updateAnswer(props.index, [
+                                value[0] || "0",
+                                safeCurrentAnswer[1],
+                            ])
+                        }
                         handleDecrement={() => handleDecrement(0)}
                         handleIncrement={() => handleIncrement(0)}
                     />
@@ -50,10 +64,15 @@ const NumberEntry = (props: Props) => {
                 <div className="space-y-3">
                     <Note text={props.label2} />
                     <NumberInput
-                        index={props.index}
+                        index={1}
                         onChange={(e) => handleChange(1, e.target.value)}
-                        currentAnswer={props.currentAnswer[1] || "0"}
-                        updateAnswer={props.updateAnswer}
+                        currentAnswer={safeCurrentAnswer[1]}
+                        updateAnswer={(_, value) =>
+                            props.updateAnswer(props.index, [
+                                safeCurrentAnswer[0],
+                                value[0] || "0",
+                            ])
+                        }
                         handleDecrement={() => handleDecrement(1)}
                         handleIncrement={() => handleIncrement(1)}
                     />

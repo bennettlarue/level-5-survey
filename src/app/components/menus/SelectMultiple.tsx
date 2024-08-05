@@ -7,6 +7,7 @@ import AddIcon from "../Svgs/AddIcon";
 import CustomText from "../buttons/CustomText";
 import { AnimatePresence } from "framer-motion";
 import BaseMenu from "./BaseMenu";
+import HeartIcon from "../Svgs/HeartIcon";
 
 type Props = {
     index: number;
@@ -14,6 +15,7 @@ type Props = {
     updateAnswer: (question: number, answer: string[]) => void;
     text: string;
     selections?: string[];
+    icon?: JSX.Element;
 };
 
 const SelectMultiple = (props: Props) => {
@@ -29,13 +31,14 @@ const SelectMultiple = (props: Props) => {
         <BaseMenu
             index={props.index}
             heading={props.text}
-            icon={<AddIcon />}
+            icon={props.icon}
             subheading="Please select all that apply."
         >
             <div className="flex flex-wrap items-center justify-center gap-5">
-                <AnimatePresence mode="wait">
+                <AnimatePresence>
                     {props.selections?.map((selection, index) => (
                         <Select
+                            index={index}
                             text={selection}
                             selected={props.currentAnswer.includes(selection)}
                             onClick={() =>
@@ -57,6 +60,7 @@ const SelectMultiple = (props: Props) => {
                         .filter((text) => !props.selections?.includes(text))
                         .map((text, index) => (
                             <CustomText
+                                key={index}
                                 text={text}
                                 onClick={() =>
                                     props.updateAnswer(

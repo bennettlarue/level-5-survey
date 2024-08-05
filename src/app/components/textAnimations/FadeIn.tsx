@@ -4,8 +4,9 @@ import React from "react";
 import { motion } from "framer-motion";
 
 type Props = {
-    text: string;
-    delay: number;
+    text?: string;
+    delay?: number;
+    children?: React.ReactNode;
 };
 
 export const FadeIn = (props: Props) => {
@@ -16,6 +17,7 @@ export const FadeIn = (props: Props) => {
             transition={{ duration: 0.4, delay: props.delay }}
         >
             {props.text}
+            {props.children}
         </motion.div>
     );
 };

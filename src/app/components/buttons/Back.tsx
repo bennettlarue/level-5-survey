@@ -10,10 +10,10 @@ type Props = {
 export const Back = (props: Props) => {
     return (
         <div
-            className=" bg-l5Gray text-l5White px-4 py-2 rounded w-fit cursor-pointer"
+            className="text-l5Gray rounded-full hover:bg-opacity-20 border border-l5Gray hover:bg-l5Gray px-3 py-1.5 w-fit cursor-pointer transition-all"
             onClick={props.onClick}
         >
-            <div className="flex items-center justify-between space-x-3 font-medium text-lg">
+            <div className="flex items-center justify-between space-x-3 font-medium">
                 <svg
                     width="24"
                     height="24"
@@ -24,9 +24,7 @@ export const Back = (props: Props) => {
                     <path
                         d="M15 18L9 12L15 6"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
                     />
                 </svg>
 

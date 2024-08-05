@@ -16,7 +16,7 @@ const RadioUnselectedIcon = (props: Props) => {
                 cy="12"
                 r="10"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
             />
         </svg>
     );

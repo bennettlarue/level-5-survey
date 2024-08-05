@@ -4,6 +4,7 @@ import RadioUnselectedIcon from "../Svgs/RadioUnselectedIcon";
 import RadioSelectedIcon from "../Svgs/RadioSelectedIcon";
 
 type Props = {
+    index?: number;
     onClick: () => void;
     selected: boolean;
     text: string;
@@ -13,6 +14,7 @@ type Props = {
 const Select = (props: Props) => {
     return (
         <IconButton
+            index={props.index}
             onClick={() => props.onClick()}
             text={props.text}
             delay={props.delay}

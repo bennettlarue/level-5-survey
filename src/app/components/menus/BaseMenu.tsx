@@ -13,17 +13,10 @@ type Props = {
 
 const BaseMenu = (props: Props) => {
     return (
-        <motion.div
-            key={props.heading}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            layout
-            className="space-y-5 h-[500px] flex items-center justify-center bg-l5GrayWhite shadow border rounded"
-        >
-            <div className="space-y-10 text-center mx-6">
+        <div className="space-y-5 h-[420px] flex items-center justify-center rounded-lg ">
+            <div className="space-y-7 text-center">
                 {props.icon && (
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-center text-l5Pink">
                         {props.icon}
                     </div>
                 )}
@@ -34,7 +27,7 @@ const BaseMenu = (props: Props) => {
 
                 {props.children}
             </div>
-        </motion.div>
+        </div>
     );
 };
 
