@@ -1,7 +1,7 @@
 import React from "react";
 import { IconButton } from "./IconButton";
-import RadioUnselectedIcon from "../Svgs/RadioUnselectedIcon";
-import RadioSelectedIcon from "../Svgs/RadioSelectedIcon";
+import EmptyBox from "../Svgs/EmptyBox";
+import CheckedBox from "../Svgs/CheckedBox";
 
 type Props = {
     index?: number;
@@ -11,7 +11,7 @@ type Props = {
     delay?: number;
 };
 
-const Select = (props: Props) => {
+const SelectMultipleButton = (props: Props) => {
     return (
         <IconButton
             index={props.index}
@@ -23,11 +23,9 @@ const Select = (props: Props) => {
                     ? "bg-l5Pink shadow-inner-lg"
                     : "bg-l5Green shadow-lg bg-opacity-80 hover:bg-opacity-100"
             }
-            icon={
-                props.selected ? <RadioSelectedIcon /> : <RadioUnselectedIcon />
-            }
+            icon={props.selected ? <CheckedBox /> : <EmptyBox />}
         />
     );
 };
 
-export default Select;
+export default SelectMultipleButton;

@@ -1,5 +1,5 @@
 import React from "react";
-import Select from "../buttons/Select";
+import Select from "../buttons/SelectOneButton";
 import Add from "../buttons/Add";
 import TextEntryPopup from "./TextEntryPopup";
 import { useState } from "react";

@@ -9,6 +9,7 @@ import MenuWrapper from "./components/menus/MenuWrapper";
 
 export default function Home() {
     const [menu, setMenu] = useState(1);
+    const [section, setSection] = useState(0);
     const [answers, setAnswers] = useState<string[][]>(
         Array.from({ length: 10 }, () => [])
     );
@@ -36,22 +37,23 @@ export default function Home() {
     };
 
     return (
-        <main>
+        <main className="flex flex-col h-screen md:items-center md:justify-center">
             <div
-                className="max-w-[1000px] mx-auto pt-16 border-2 border-l5LightGray shadow rounded-lg mt-20 p-10"
+                className="flex flex-col flex-grow w-full max-w-[1000px] max-h-[600px] mx-auto border-2 md:border-l5LightGray md:shadow rounded-lg"
                 style={{ backgroundColor: "#f2f2f2" }}
             >
-                <AnimatePresence mode="wait">
-                    <MenuWrapper
-                        key={`menu-wrapper-${menu}`}
-                        config={MenuConfig[menu]}
-                        answers={answers[menu]}
-                        updateAnswer={updateAnswer}
-                        index={menu}
-                    />
-                </AnimatePresence>
-
-                <div className="flex items-center justify-end mx-auto space-x-5">
+                <div className="flex-grow overflow-y-auto">
+                    <AnimatePresence mode="wait">
+                        <MenuWrapper
+                            key={`menu-wrapper-${menu}`}
+                            config={MenuConfig[menu]}
+                            answers={answers[menu]}
+                            updateAnswer={updateAnswer}
+                            index={menu}
+                        />
+                    </AnimatePresence>
+                </div>
+                <div className="flex items-center md:justify-end justify-center p-4 space-x-5 border-t border-l5Gray">
                     <Back onClick={handleBack} />
                     <Next
                         onClick={handleNext}

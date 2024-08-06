@@ -39,7 +39,7 @@ export const NumberInput = (props: Props) => {
     };
 
     return (
-        <FadeIn delay={0.5}>
+        <FadeIn delay={0.2}>
             <div className="flex items-center justify-center space-x-3">
                 <button
                     onClick={props.handleDecrement}

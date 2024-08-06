@@ -34,7 +34,7 @@ export const TextInput = (props: Props) => {
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     className={`
-                    w-full px-4 py-2 text-lg 
+                    w-full max-w-[300px] px-4 py-2 text-lg 
                     border border-gray-300 rounded-full 
                     shadow-inner bg-l5GrayWhite bg-opacity-70 
                     focus:outline-none focus:ring-2 focus:ring-l5Blue focus:border-transparent

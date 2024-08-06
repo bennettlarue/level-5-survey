@@ -1,5 +1,5 @@
 import React from "react";
-import Select from "../buttons/Select";
+import Select from "../buttons/SelectOneButton";
 import Add from "../buttons/Add";
 import TextEntryPopup from "./TextEntryPopup";
 import { useState } from "react";
@@ -8,6 +8,7 @@ import CustomText from "../buttons/CustomText";
 import { AnimatePresence } from "framer-motion";
 import BaseMenu from "./BaseMenu";
 import HeartIcon from "../Svgs/HeartIcon";
+import SelectMultipleButton from "../buttons/SelectMultipleButton";
 
 type Props = {
     index: number;
@@ -37,7 +38,7 @@ const SelectMultiple = (props: Props) => {
             <div className="flex flex-wrap items-center justify-center gap-5">
                 <AnimatePresence>
                     {props.selections?.map((selection, index) => (
-                        <Select
+                        <SelectMultipleButton
                             index={index}
                             text={selection}
                             selected={props.currentAnswer.includes(selection)}

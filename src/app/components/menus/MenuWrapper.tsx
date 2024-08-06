@@ -85,6 +85,7 @@ const MenuWrapper = ({ config, answers, updateAnswer, index }) => {
             animate="animate"
             exit="exit"
             variants={animations}
+            className="w-full h-full"
         >
             {renderMenu()}
         </motion.div>

@@ -13,8 +13,8 @@ type Props = {
 
 const BaseMenu = (props: Props) => {
     return (
-        <div className="space-y-5 h-[420px] flex items-center justify-center rounded-lg ">
-            <div className="space-y-7 text-center">
+        <div className="space-y-5 h-full mx-6 flex items-center justify-center rounded-lg ">
+            <div className="space-y-10 text-center">
                 {props.icon && (
                     <div className="flex items-center justify-center text-l5Pink">
                         {props.icon}

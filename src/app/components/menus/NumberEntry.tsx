@@ -44,7 +44,7 @@ const NumberEntry = (props: Props) => {
 
     return (
         <BaseMenu index={props.index} heading={props.text} icon={props.icon}>
-            <div className="flex items-center justify-center space-x-12">
+            <div className="md:flex items-center justify-center md:space-x-12 md:space-y-0 space-y-8">
                 <div className="space-y-3">
                     <Note text={props.label1} />
                     <NumberInput
