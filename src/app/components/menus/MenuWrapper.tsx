@@ -10,7 +10,14 @@ import SvgWrapper from "../Svgs/SvgWrapper";
 import Rate from "./Rate";
 import Section from "./Section";
 
-const MenuWrapper = ({ config, answers, updateAnswer, index }) => {
+const MenuWrapper = ({
+    config,
+    answers,
+    updateAnswer,
+    index,
+    sectionIndex,
+    sectionCount,
+}) => {
     const animations = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
@@ -26,7 +33,10 @@ const MenuWrapper = ({ config, answers, updateAnswer, index }) => {
                         index={index}
                         currentAnswer={answers}
                         updateAnswer={updateAnswer}
+                        sectionCount={sectionCount}
+                        sectionIndex={sectionIndex}
                         text={config.Text}
+                        content={config.Content}
                         icon={<SvgWrapper name={config.Icon} />}
                     />
                 );

@@ -10,7 +10,6 @@ import MenuWrapper from "./components/menus/MenuWrapper";
 export default function Home() {
     const [menu, setMenu] = useState(0);
     const [section, setSection] = useState(0);
-    console.log(MenuConfig[1].length);
     const [answers, setAnswers] = useState<string[][][]>(
         Array.from({ length: MenuConfig.length }, (_, index) => {
             return Array.from({ length: MenuConfig[index].length }, () => []);
@@ -40,8 +39,9 @@ export default function Home() {
         if (menu > 0) {
             setMenu(menu - 1);
         } else {
+            console.log("else block");
+            setMenu(MenuConfig[section - 1].length - 1);
             setSection(section - 1);
-            setMenu(MenuConfig[section].length - 1);
         }
     };
 
@@ -55,6 +55,8 @@ export default function Home() {
                     <AnimatePresence mode="wait">
                         <MenuWrapper
                             key={`menu-wrapper-${menu}`}
+                            sectionIndex={section}
+                            sectionCount={MenuConfig.length}
                             config={MenuConfig[section][menu]}
                             answers={answers[section][menu]}
                             updateAnswer={(answer: string[]) => {

@@ -29,8 +29,6 @@ const SelectMultiple = (props: Props) => {
         props.updateAnswer([...props.currentAnswer, text]);
     };
 
-    console.log(props.currentAnswer);
-
     return (
         <BaseMenu
             index={props.index}

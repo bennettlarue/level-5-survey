@@ -2,8 +2,10 @@
     [            {
                 "Type": "Section",
                 "Text": "Your experience is unique and valuable.",
-                "SubText": "SubText 1",
-                "Content": "Content 1",
+                "Content": [
+                    "We would like to ask you a few questions to get a better understanding of your patient experience.",
+                    "If your comfortable, answering questions could help improve the experience of others."
+                ],
                 "Icon": "HeartIcon"
             },
             { 
@@ -61,53 +63,30 @@
             {
                 "Type": "Section",
                 "Text": "Congrats, you made it to section 2!",
-                "SubText": "SubText 1",
-                "Content": "Content 1",
+                "Content": [
+                    "Section",
+                    "TextEntry"
+                ],
                 "Icon": "HeartIcon"
             },
-            { 
-                "Type": "SelectMultiple",
-                "Text": "What foods do you like?",
-                "Icon": "HeartIcon",
-                "Selections": [
-                    "Sandwich",
-                    "Soup",
-                    "Salad",
-                    "Dinner",
-                    "Dessert",
-                    "Snack",
-                    "Other"
-                ]
-            },
-            { 
-                "Type": "YesNo",
-                "Text": "Have you had lunch?",
-                "Icon": "HeartIcon"
-            },
-            { 
-                "Type": "SelectOne",
-                "Text": "What is your favorite food?",
-                "Icon": "HeartIcon",
-                "Selections": [
-                    "Sandwich",
-                    "Soup",
-                    "Salad",
-                    "Burger",
-                    "Sushi"
-                ]
-            },
+            
             {
-                "Type": "NumberEntry",
-                "Text": "How long ago was your last lunch?",
-                "Icon": "HeartIcon",
-                "Label1": "Days",
-                "Label2": "Hours"
-            },
+                "Type": "Rate",
+                "Text": "How much do you like sandwiches?",
+                "Icon": "HeartIcon"
+            }
+        ],
+        [
             {
-                "Type": "TextEntry",
-                "Text": "What is your favorite color?",
+                "Type": "Section",
+                "Text": "Congrats, you made it to section 3!",
+                "Content": [
+                    "Section",
+                    "TextEntry"
+                ],
                 "Icon": "HeartIcon"
             },
+            
             {
                 "Type": "Rate",
                 "Text": "How much do you like sandwiches?",

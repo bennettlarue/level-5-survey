@@ -13,14 +13,12 @@ type Props = {
 const Dot = ({
     selected,
     onClick,
-    text,
     hoverIndex,
     setHoverIndex,
     index,
 }: {
     selected: boolean;
     onClick: () => void;
-    text?: string;
     hoverIndex: number | null;
     setHoverIndex: (index: number | null) => void;
     index: number;
