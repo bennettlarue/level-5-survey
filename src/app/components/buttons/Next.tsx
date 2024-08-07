@@ -8,7 +8,7 @@ type Props = {
 
 export const Next = (props: Props) => {
     const baseStyle =
-        "text-l5Gray shadow transition-all border border-l5Gray px-3 py-1.5 rounded-full w-fit cursor-pointer";
+        "text-l5Gray shadow transition-all border border-l5Gray px-3 py-1.5 rounded-full w-fit cursor-pointer no-select";
     const readyStyle = "bg-l5Blue bg-opacity-80 hover:bg-opacity-100";
     const skipStyle = "bg-l5Blue bg-opacity-30 hover:bg-opacity-50";
 

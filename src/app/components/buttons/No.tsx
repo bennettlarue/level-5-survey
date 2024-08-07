@@ -15,8 +15,8 @@ const No = (props: Props) => {
             icon={<XIcon />}
             background={
                 props.selected
-                    ? "bg-l5Pink shadow-inner"
-                    : "bg-l5Green bg-opacity-80 hover:bg-opacity-100 shadow"
+                    ? "bg-l5Pink shadow-inner no-select"
+                    : "bg-l5Green bg-opacity-80 hover:bg-opacity-100 shadow no-select"
             }
         />
     );

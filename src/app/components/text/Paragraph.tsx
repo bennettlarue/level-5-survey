@@ -7,7 +7,7 @@ type Props = {
 
 export const Paragraph = (props: Props) => {
     return (
-        <div className="poppins-regular text-2xl">
+        <div className="poppins-regular text-lg text-balance">
             <FadeIn delay={0.5} text={props.text} />
         </div>
     );

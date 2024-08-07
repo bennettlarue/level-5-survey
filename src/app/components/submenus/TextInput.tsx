@@ -4,7 +4,7 @@ import { FadeIn } from "../textAnimations/FadeIn";
 type Props = {
     index: number;
     currentAnswer: string;
-    updateAnswer: (index: number, value: string[]) => void;
+    updateAnswer: (value: string[]) => void;
     placeholder?: string;
 };
 
@@ -12,7 +12,7 @@ export const TextInput = (props: Props) => {
     const [isFocused, setIsFocused] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        props.updateAnswer(props.index, [e.target.value]);
+        props.updateAnswer([e.target.value]);
     };
 
     const handleFocus = () => {

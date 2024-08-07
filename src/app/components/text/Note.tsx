@@ -9,11 +9,10 @@ type Props = {
 const Note = (props: Props) => {
     return (
         <div className="text-l5Gray text-opacity-80">
-            {props.animated ? (
-                <FadeIn text={props.text} delay={0.3} />
-            ) : (
-                props.text
-            )}
+            <FadeIn
+                text={props.text}
+                delay={props.animated === false ? 0 : 0.5}
+            />
         </div>
     );
 };

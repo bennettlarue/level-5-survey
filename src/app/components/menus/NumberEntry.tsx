@@ -6,7 +6,7 @@ import Note from "../text/Note";
 type Props = {
     index: number;
     currentAnswer: string[];
-    updateAnswer: (question: number, answer: string[]) => void;
+    updateAnswer: (answer: string[]) => void;
     icon: JSX.Element;
     text: string;
     label1: string;
@@ -24,20 +24,20 @@ const NumberEntry = (props: Props) => {
         const newAnswer = [...safeCurrentAnswer];
         const currentValue = parseInt(newAnswer[index], 10);
         newAnswer[index] = (currentValue + 1).toString();
-        props.updateAnswer(props.index, newAnswer);
+        props.updateAnswer(newAnswer);
     };
 
     const handleDecrement = (index: number) => {
         const newAnswer = [...safeCurrentAnswer];
         const currentValue = parseInt(newAnswer[index], 10);
         newAnswer[index] = Math.max(0, currentValue - 1).toString();
-        props.updateAnswer(props.index, newAnswer);
+        props.updateAnswer(newAnswer);
     };
 
     const handleChange = (index: number, value: string) => {
         const newAnswer = [...safeCurrentAnswer];
         newAnswer[index] = value || "0"; // Set to "0" if value is empty
-        props.updateAnswer(props.index, newAnswer);
+        props.updateAnswer(newAnswer);
     };
 
     console.log(safeCurrentAnswer);
@@ -52,7 +52,7 @@ const NumberEntry = (props: Props) => {
                         onChange={(e) => handleChange(0, e.target.value)}
                         currentAnswer={safeCurrentAnswer[0]}
                         updateAnswer={(_, value) =>
-                            props.updateAnswer(props.index, [
+                            props.updateAnswer([
                                 value[0] || "0",
                                 safeCurrentAnswer[1],
                             ])
@@ -68,7 +68,7 @@ const NumberEntry = (props: Props) => {
                         onChange={(e) => handleChange(1, e.target.value)}
                         currentAnswer={safeCurrentAnswer[1]}
                         updateAnswer={(_, value) =>
-                            props.updateAnswer(props.index, [
+                            props.updateAnswer([
                                 safeCurrentAnswer[0],
                                 value[0] || "0",
                             ])

@@ -10,7 +10,7 @@ type Props = {
 export const Back = (props: Props) => {
     return (
         <div
-            className="text-l5Gray rounded-full hover:bg-opacity-20 border border-l5Gray hover:bg-l5Gray px-3 py-1.5 w-fit cursor-pointer transition-all"
+            className="no-select text-l5Gray rounded-full hover:bg-opacity-20 border border-l5Gray hover:bg-l5Gray px-3 py-1.5 w-fit cursor-pointer transition-all"
             onClick={props.onClick}
         >
             <div className="flex items-center justify-between space-x-3 font-medium">

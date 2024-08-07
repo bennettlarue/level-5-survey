@@ -6,7 +6,7 @@ import Note from "../text/Note";
 type Props = {
     index: number;
     currentAnswer: string[];
-    updateAnswer: (question: number, answer: string[]) => void;
+    updateAnswer: (answer: string[]) => void;
     icon: JSX.Element;
     text: string;
 };

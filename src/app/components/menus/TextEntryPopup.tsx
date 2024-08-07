@@ -65,7 +65,7 @@ const TextEntryPopup = (props: Props) => {
                         exit={{ opacity: 0, scale: 0.8 }}
                         className="fixed inset-0 flex items-center justify-center z-50"
                     >
-                        <div className="bg-l5White p-6 rounded-lg shadow-lg w-96 space-y-5">
+                        <div className="bg-l5White p-6 rounded-lg shadow-lg w-96 space-y-5 mx-5">
                             <Note
                                 text="Enter your custom answer"
                                 animated={false}

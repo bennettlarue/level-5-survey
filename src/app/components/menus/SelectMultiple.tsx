@@ -9,11 +9,12 @@ import { AnimatePresence } from "framer-motion";
 import BaseMenu from "./BaseMenu";
 import HeartIcon from "../Svgs/HeartIcon";
 import SelectMultipleButton from "../buttons/SelectMultipleButton";
+import { motion } from "framer-motion";
 
 type Props = {
     index: number;
     currentAnswer: string[];
-    updateAnswer: (question: number, answer: string[]) => void;
+    updateAnswer: (answer: string[]) => void;
     text: string;
     selections?: string[];
     icon?: JSX.Element;
@@ -25,8 +26,10 @@ const SelectMultiple = (props: Props) => {
     const handleOpenMenu = () => setMenuOpen(true);
     const handleCloseMenu = () => setMenuOpen(false);
     const handleSubmit = (text: string) => {
-        props.updateAnswer(props.index, [...props.currentAnswer, text]);
+        props.updateAnswer([...props.currentAnswer, text]);
     };
+
+    console.log(props.currentAnswer);
 
     return (
         <BaseMenu
@@ -38,42 +41,48 @@ const SelectMultiple = (props: Props) => {
             <div className="flex flex-wrap items-center justify-center gap-5">
                 <AnimatePresence>
                     {props.selections?.map((selection, index) => (
-                        <SelectMultipleButton
-                            index={index}
-                            text={selection}
-                            selected={props.currentAnswer.includes(selection)}
-                            onClick={() =>
-                                props.currentAnswer.includes(selection)
-                                    ? props.updateAnswer(
-                                          props.index,
-                                          props.currentAnswer.filter(
-                                              (s) => s !== selection
+                        <motion.div layout key={index}>
+                            <SelectMultipleButton
+                                index={index}
+                                text={selection}
+                                selected={props.currentAnswer.includes(
+                                    selection
+                                )}
+                                onClick={() =>
+                                    props.currentAnswer.includes(selection)
+                                        ? props.updateAnswer(
+                                              props.currentAnswer.filter(
+                                                  (s) => s !== selection
+                                              )
                                           )
-                                      )
-                                    : props.updateAnswer(props.index, [
-                                          ...props.currentAnswer,
-                                          selection,
-                                      ])
-                            }
-                        />
+                                        : props.updateAnswer([
+                                              ...props.currentAnswer,
+                                              selection,
+                                          ])
+                                }
+                            />
+                        </motion.div>
                     ))}
                     {props.currentAnswer
                         .filter((text) => !props.selections?.includes(text))
                         .map((text, index) => (
-                            <CustomText
-                                key={index}
-                                text={text}
-                                onClick={() =>
-                                    props.updateAnswer(
-                                        props.index,
-                                        props.currentAnswer.filter(
-                                            (t) => t !== text
+                            <motion.div layout key={index}>
+                                <CustomText
+                                    key={index}
+                                    text={text}
+                                    onClick={() =>
+                                        props.updateAnswer(
+                                            props.currentAnswer.filter(
+                                                (t) => t !== text
+                                            )
                                         )
-                                    )
-                                }
-                            />
+                                    }
+                                />
+                            </motion.div>
                         ))}
-                    <Add onClick={handleOpenMenu} />
+                    <motion.div layout key={100000000}>
+                        <Add onClick={handleOpenMenu} />
+                    </motion.div>
                 </AnimatePresence>
             </div>
             <div className="relative">

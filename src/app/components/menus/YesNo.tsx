@@ -6,7 +6,7 @@ import BaseMenu from "./BaseMenu";
 type Props = {
     index: number;
     currentAnswer: string[];
-    updateAnswer: (question: number, answer: string[]) => void;
+    updateAnswer: (answer: string[]) => void;
     text: string;
     icon?: JSX.Element;
 };
@@ -19,16 +19,16 @@ const YesNo = (props: Props) => {
                     selected={props.currentAnswer[0] === "yes"}
                     onClick={() => {
                         props.currentAnswer[0] === "yes"
-                            ? props.updateAnswer(props.index, [])
-                            : props.updateAnswer(props.index, ["yes"]);
+                            ? props.updateAnswer([])
+                            : props.updateAnswer(["yes"]);
                     }}
                 />
                 <No
                     selected={props.currentAnswer[0] === "no"}
                     onClick={() => {
                         props.currentAnswer[0] === "no"
-                            ? props.updateAnswer(props.index, [])
-                            : props.updateAnswer(props.index, ["no"]);
+                            ? props.updateAnswer([])
+                            : props.updateAnswer(["no"]);
                     }}
                 />
             </div>

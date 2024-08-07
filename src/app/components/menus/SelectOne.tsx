@@ -7,11 +7,12 @@ import AddIcon from "../Svgs/AddIcon";
 import CustomText from "../buttons/CustomText";
 import { AnimatePresence } from "framer-motion";
 import BaseMenu from "./BaseMenu";
+import { motion } from "framer-motion";
 
 type Props = {
     index: number;
     currentAnswer: string[];
-    updateAnswer: (question: number, answer: string[]) => void; // Changed from string[] to string
+    updateAnswer: (answer: string[]) => void; // Changed from string[] to string
     text: string;
     selections?: string[];
     icon?: JSX.Element;
@@ -23,7 +24,7 @@ const SelectOne = (props: Props) => {
     const handleOpenMenu = () => setMenuOpen(true);
     const handleCloseMenu = () => setMenuOpen(false);
     const handleSubmit = (text: string) => {
-        props.updateAnswer(props.index, [text]);
+        props.updateAnswer([text]);
     };
 
     return (
@@ -36,28 +37,32 @@ const SelectOne = (props: Props) => {
             <div className="flex flex-wrap items-center justify-center gap-5">
                 <AnimatePresence>
                     {props.selections?.map((selection, index) => (
-                        <Select
-                            key={index}
-                            text={selection}
-                            selected={props.currentAnswer[0] === selection}
-                            onClick={() => {
-                                props.currentAnswer[0] === selection
-                                    ? props.updateAnswer(props.index, [])
-                                    : props.updateAnswer(props.index, [
-                                          selection,
-                                      ]);
-                            }}
-                        />
+                        <motion.div layout key={index}>
+                            <Select
+                                key={index}
+                                text={selection}
+                                selected={props.currentAnswer[0] === selection}
+                                onClick={() => {
+                                    props.currentAnswer[0] === selection
+                                        ? props.updateAnswer([])
+                                        : props.updateAnswer([selection]);
+                                }}
+                            />
+                        </motion.div>
                     ))}
                     {props.currentAnswer &&
                     props.currentAnswer[0] &&
                     !props.selections?.includes(props.currentAnswer[0]) ? (
-                        <CustomText
-                            text={props.currentAnswer[0]}
-                            onClick={() => props.updateAnswer(props.index, [])}
-                        />
+                        <motion.div layout key={props.currentAnswer[0]}>
+                            <CustomText
+                                text={props.currentAnswer[0]}
+                                onClick={() => props.updateAnswer([])}
+                            />
+                        </motion.div>
                     ) : (
-                        <Add onClick={handleOpenMenu} />
+                        <motion.div layout key="add-button">
+                            <Add onClick={handleOpenMenu} />
+                        </motion.div>
                     )}
                 </AnimatePresence>
             </div>

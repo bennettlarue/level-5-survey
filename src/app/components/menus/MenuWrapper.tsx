@@ -7,6 +7,8 @@ import NumberEntry from "./NumberEntry";
 import TextEntry from "./TextEntry";
 import DragDrop from "./DragDrop";
 import SvgWrapper from "../Svgs/SvgWrapper";
+import Rate from "./Rate";
+import Section from "./Section";
 
 const MenuWrapper = ({ config, answers, updateAnswer, index }) => {
     const animations = {
@@ -18,6 +20,26 @@ const MenuWrapper = ({ config, answers, updateAnswer, index }) => {
 
     const renderMenu = () => {
         switch (config.Type) {
+            case "Section":
+                return (
+                    <Section
+                        index={index}
+                        currentAnswer={answers}
+                        updateAnswer={updateAnswer}
+                        text={config.Text}
+                        icon={<SvgWrapper name={config.Icon} />}
+                    />
+                );
+            case "Rate":
+                return (
+                    <Rate
+                        index={index}
+                        currentAnswer={answers}
+                        updateAnswer={updateAnswer}
+                        text={config.Text}
+                        icon={<SvgWrapper name={config.Icon} />}
+                    />
+                );
             case "SelectMultiple":
                 return (
                     <SelectMultiple
