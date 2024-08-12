@@ -1,8 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import MenuConfig from "/data/MenuConfig.json";
-
+import MenuConfig from "../../../data/MenuConfig.json";
 // Create the context
 export const MenuContext = createContext<any>(null);
 

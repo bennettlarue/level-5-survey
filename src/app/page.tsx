@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import { Back } from "./components/buttons/Back";
 import { Next } from "./components/buttons/Next";
-import MenuConfig from "/data/MenuConfig.json";
+import MenuConfig from "../../data/MenuConfig.json";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import MenuWrapper from "./components/menus/MenuWrapper";
