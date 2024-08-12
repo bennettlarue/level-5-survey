@@ -19,7 +19,7 @@ const EmptyBox = (props: Props) => {
                 rx="4"
                 ry="4"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
             />
         </svg>
     );

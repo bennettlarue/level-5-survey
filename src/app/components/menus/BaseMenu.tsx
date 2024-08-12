@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PrimaryHeading from "../text/PrimaryHeading";
 import Note from "../text/Note";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Props = {
     index: number;
@@ -14,6 +14,22 @@ type Props = {
 };
 
 const BaseMenu = (props: Props) => {
+    const [content, setContent] = useState({
+        heading: props.heading,
+        subheading: props.subheading,
+        children: props.children,
+        key: props.index,
+    });
+
+    useEffect(() => {
+        setContent({
+            heading: props.heading,
+            subheading: props.subheading,
+            children: props.children,
+            key: props.index,
+        });
+    }, [props.heading, props.subheading, props.children, props.index]);
+
     return (
         <div
             className={`space-y-5 h-full md:px-6 flex items-center justify-center ${props.bgColor} text-${props.textColor}`}
@@ -28,17 +44,27 @@ const BaseMenu = (props: Props) => {
                         {props.icon}
                     </div>
                 )}
-                <div className="space-y-4">
-                    {props.heading && (
-                        <PrimaryHeading
-                            text={props.heading}
-                            textColor={props.textColor}
-                        />
-                    )}
-                    {props.subheading && <Note text={props.subheading} />}
-                </div>
-
-                {props.children}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={content.key}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="space-y-4"
+                    >
+                        {content.heading && (
+                            <PrimaryHeading
+                                text={content.heading}
+                                textColor={props.textColor}
+                            />
+                        )}
+                        {content.subheading && (
+                            <Note text={content.subheading} />
+                        )}
+                        {content.children}
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </div>
     );

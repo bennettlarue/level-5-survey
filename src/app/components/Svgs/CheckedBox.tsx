@@ -19,14 +19,14 @@ const CheckedBox = (props: Props) => {
                 rx="4"
                 ry="4"
                 stroke="currentColor"
-                stroke-width="1.8"
+                strokeWidth="1.8"
             />
             <path
                 d="M7 12L10 15L17 8"
                 stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
         </svg>
     );

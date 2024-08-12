@@ -29,7 +29,7 @@ const GreenCheck = () => {
 
 const GreenLine = () => {
     return (
-        <div className="bg-l5Green shadow-inner text-l5White w-[35px] h-[10px] mx-[-5px]" />
+        <div className="bg-l5Green shadow-inner text-l5White w-[35px] h-[10px] mx-[-10px]" />
     );
 };
 

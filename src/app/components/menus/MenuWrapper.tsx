@@ -5,7 +5,6 @@ import YesNo from "./YesNo";
 import SelectOne from "./SelectOne";
 import NumberEntry from "./NumberEntry";
 import TextEntry from "./TextEntry";
-import DragDrop from "./DragDrop";
 import SvgWrapper from "../Svgs/SvgWrapper";
 import Rate from "./Rate";
 import Section from "./Section";
@@ -28,18 +27,7 @@ const MenuWrapper = ({
     const renderMenu = () => {
         switch (config.Type) {
             case "Section":
-                return (
-                    <Section
-                        index={index}
-                        currentAnswer={answers}
-                        updateAnswer={updateAnswer}
-                        sectionCount={sectionCount}
-                        sectionIndex={sectionIndex}
-                        text={config.Text}
-                        content={config.Content}
-                        icon={<SvgWrapper name={config.Icon} />}
-                    />
-                );
+                return <Section />;
             case "Rate":
                 return (
                     <Rate
@@ -51,37 +39,11 @@ const MenuWrapper = ({
                     />
                 );
             case "SelectMultiple":
-                return (
-                    <SelectMultiple
-                        currentAnswer={answers}
-                        updateAnswer={updateAnswer}
-                        index={index}
-                        text={config.Text}
-                        selections={config.Selections}
-                        icon={<SvgWrapper name={config.Icon} />}
-                    />
-                );
+                return <SelectMultiple />;
             case "YesNo":
-                return (
-                    <YesNo
-                        index={index}
-                        currentAnswer={answers}
-                        updateAnswer={updateAnswer}
-                        text={config.Text}
-                        icon={<SvgWrapper name={config.Icon} />}
-                    />
-                );
+                return <YesNo />;
             case "SelectOne":
-                return (
-                    <SelectOne
-                        index={index}
-                        currentAnswer={answers}
-                        updateAnswer={updateAnswer}
-                        text={config.Text}
-                        selections={config.Selections}
-                        icon={<SvgWrapper name={config.Icon} />}
-                    />
-                );
+                return <SelectOne />;
             case "NumberEntry":
                 return (
                     <NumberEntry

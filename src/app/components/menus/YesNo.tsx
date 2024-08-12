@@ -2,33 +2,58 @@ import React from "react";
 import Yes from "../buttons/Yes";
 import No from "../buttons/No";
 import BaseMenu from "./BaseMenu";
+import { useMenu } from "@/app/contexts/MenuContext";
+import { useNavigation } from "@/app/contexts/NavigationContext";
+import { useAnswers } from "@/app/contexts/AnswersContext";
+import SvgWrapper from "../Svgs/SvgWrapper";
 
-type Props = {
-    index: number;
-    currentAnswer: string[];
-    updateAnswer: (answer: string[]) => void;
-    text: string;
-    icon?: JSX.Element;
-};
+type Props = {};
 
 const YesNo = (props: Props) => {
+    const menu = useMenu();
+    const { currentSection, currentQuestion } = useNavigation();
+
+    const { answers, handleUpdateAnswer } = useAnswers();
+    const slideData = menu[currentSection][currentQuestion];
+    const currentAnswer = answers[currentSection][currentQuestion] || [];
+
     return (
-        <BaseMenu index={props.index} heading={props.text} icon={props.icon}>
+        <BaseMenu
+            index={currentSection * 1000 + currentQuestion}
+            heading={slideData.Text}
+            icon={<SvgWrapper name={slideData.Icon} />}
+        >
             <div className="flex items-center justify-center space-x-12">
                 <Yes
-                    selected={props.currentAnswer[0] === "yes"}
+                    selected={currentAnswer[0] === "yes"}
                     onClick={() => {
-                        props.currentAnswer[0] === "yes"
-                            ? props.updateAnswer([])
-                            : props.updateAnswer(["yes"]);
+                        currentAnswer[0] === "yes"
+                            ? handleUpdateAnswer(
+                                  currentSection,
+                                  currentQuestion,
+                                  []
+                              )
+                            : handleUpdateAnswer(
+                                  currentSection,
+                                  currentQuestion,
+                                  ["yes"]
+                              );
                     }}
                 />
                 <No
-                    selected={props.currentAnswer[0] === "no"}
+                    selected={currentAnswer[0] === "no"}
                     onClick={() => {
-                        props.currentAnswer[0] === "no"
-                            ? props.updateAnswer([])
-                            : props.updateAnswer(["no"]);
+                        currentAnswer[0] === "no"
+                            ? handleUpdateAnswer(
+                                  currentSection,
+                                  currentQuestion,
+                                  []
+                              )
+                            : handleUpdateAnswer(
+                                  currentSection,
+                                  currentQuestion,
+                                  ["no"]
+                              );
                     }}
                 />
             </div>

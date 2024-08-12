@@ -1,11 +1,14 @@
 "use client";
 
+import { useContext } from "react";
 import { Back } from "./components/buttons/Back";
 import { Next } from "./components/buttons/Next";
 import MenuConfig from "/data/MenuConfig.json";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import MenuWrapper from "./components/menus/MenuWrapper";
+import { useNavigation } from "./contexts/NavigationContext";
+import { useAnswers } from "./contexts/AnswersContext";
 
 export default function Home() {
     const [menu, setMenu] = useState(0);
@@ -15,6 +18,9 @@ export default function Home() {
             return Array.from({ length: MenuConfig[index].length }, () => []);
         })
     );
+
+    const { currentSection, currentQuestion, navigateNext, navigatePrevious } =
+        useNavigation();
 
     const updateAnswer = (
         section: number,
@@ -27,6 +33,7 @@ export default function Home() {
     };
 
     const handleNext = () => {
+        navigateNext();
         if (menu < MenuConfig[section].length - 1) {
             setMenu(menu + 1);
         } else {
@@ -36,6 +43,7 @@ export default function Home() {
     };
 
     const handleBack = () => {
+        navigatePrevious();
         if (menu > 0) {
             setMenu(menu - 1);
         } else {

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import BaseMenu from "./BaseMenu";
 import Note from "../text/Note";
+import { useMenu } from "@/app/contexts/MenuContext";
+import { useNavigation } from "@/app/contexts/NavigationContext";
+import { useAnswers } from "@/app/contexts/AnswersContext";
+import SvgWrapper from "../Svgs/SvgWrapper";
 
-type Props = {
-    index: number;
-    currentAnswer: string[];
-    updateAnswer: (answer: string[]) => void;
-    text: string;
-    icon?: JSX.Element;
-};
+type Props = {};
 
 const Dot = ({
     selected,
@@ -46,12 +44,23 @@ const Dot = ({
 };
 
 const Rate = (props: Props) => {
+    const menu = useMenu();
+    const { currentSection, currentQuestion } = useNavigation();
+
+    const { answers, handleUpdateAnswer } = useAnswers();
+    const slideData = menu[currentSection][currentQuestion];
+    const currentAnswer = answers[currentSection][currentQuestion] || [];
+
     // Create an array of numbers 1 through 5
     const numbers = Array.from({ length: 5 }, (_, index) => index + 1);
     const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
     return (
-        <BaseMenu index={props.index} heading={props.text} icon={props.icon}>
+        <BaseMenu
+            index={currentQuestion * 1000 + currentSection}
+            heading={slideData.Text}
+            icon={<SvgWrapper name={slideData.Icon} />}
+        >
             <div className="flex items-center justify-center space-x-5">
                 <div className="space-y-2">
                     <div className="flex justify-between">
@@ -64,11 +73,14 @@ const Rate = (props: Props) => {
                                 key={number}
                                 index={number}
                                 selected={
-                                    number <=
-                                    parseInt(props.currentAnswer[0], 10)
+                                    number <= parseInt(currentAnswer[0], 10)
                                 }
                                 onClick={() =>
-                                    props.updateAnswer([number.toString()])
+                                    handleUpdateAnswer(
+                                        currentSection,
+                                        currentQuestion,
+                                        [number.toString()]
+                                    )
                                 }
                                 hoverIndex={hoverIndex}
                                 setHoverIndex={setHoverIndex}

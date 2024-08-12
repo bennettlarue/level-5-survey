@@ -1,43 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BaseMenu from "./BaseMenu";
-import { TextInput } from "../submenus/TextInput";
-import Note from "../text/Note";
 import { Paragraph } from "../text/Paragraph";
 import CheckProgress from "../Svgs/CheckProgress";
+import { useMenu } from "@/app/contexts/MenuContext";
+import { useNavigation } from "@/app/contexts/NavigationContext";
+import { useAnswers } from "@/app/contexts/AnswersContext";
 
-type Props = {
-    index: number;
-    currentAnswer: string[];
-    updateAnswer: (answer: string[]) => void;
-    icon: JSX.Element;
-    text: string;
-    content: string[];
-    sectionIndex: number;
-    sectionCount: number;
-};
+type Props = {};
 
 const Section = (props: Props) => {
+    const menu = useMenu();
+    const { currentSection, currentQuestion } = useNavigation();
+
+    const { answers, handleUpdateAnswer } = useAnswers();
     useEffect(() => {
-        props.updateAnswer(["Section"]);
+        handleUpdateAnswer(currentSection, currentQuestion, ["Section"]);
     }, []);
+
+    const slideData = menu[currentSection][currentQuestion];
 
     return (
         <BaseMenu
-            index={props.index}
-            heading={props.text}
+            index={currentSection * 1000 + currentQuestion} // unique key for each slide
+            heading={slideData.Text}
             icon={
                 <CheckProgress
-                    sectionIndex={props.sectionIndex}
-                    sectionCount={props.sectionCount}
+                    sectionIndex={currentSection}
+                    sectionCount={menu.length}
                 />
             }
             bgColor="bg-l5Pink"
             textColor="text-l5White"
         >
             <div className="text-l5White space-y-6 opacity-90 max-w-[400px] mx-auto">
-                {props.content.map((para) => (
-                    <Paragraph text={para} />
-                ))}
+                {slideData.Content &&
+                    slideData.Content.map((para: string, index: number) => (
+                        <Paragraph key={index} text={para} />
+                    ))}
             </div>
         </BaseMenu>
     );

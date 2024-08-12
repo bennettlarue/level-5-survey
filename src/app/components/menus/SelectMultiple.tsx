@@ -1,77 +1,92 @@
 import React from "react";
-import Select from "../buttons/SelectOneButton";
 import Add from "../buttons/Add";
 import TextEntryPopup from "./TextEntryPopup";
 import { useState } from "react";
-import AddIcon from "../Svgs/AddIcon";
 import CustomText from "../buttons/CustomText";
 import { AnimatePresence } from "framer-motion";
 import BaseMenu from "./BaseMenu";
-import HeartIcon from "../Svgs/HeartIcon";
 import SelectMultipleButton from "../buttons/SelectMultipleButton";
 import { motion } from "framer-motion";
+import { useMenu } from "@/app/contexts/MenuContext";
+import { useNavigation } from "@/app/contexts/NavigationContext";
+import { useAnswers } from "@/app/contexts/AnswersContext";
+import SvgWrapper from "../Svgs/SvgWrapper";
 
-type Props = {
-    index: number;
-    currentAnswer: string[];
-    updateAnswer: (answer: string[]) => void;
-    text: string;
-    selections?: string[];
-    icon?: JSX.Element;
-};
+type Props = {};
 
 const SelectMultiple = (props: Props) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
-
     const handleOpenMenu = () => setMenuOpen(true);
     const handleCloseMenu = () => setMenuOpen(false);
+
+    const menu = useMenu();
+    const { currentSection, currentQuestion } = useNavigation();
+
+    const { answers, handleUpdateAnswer } = useAnswers();
+    const slideData = menu[currentSection][currentQuestion];
+    const currentAnswer = answers[currentSection][currentQuestion] || [];
+
     const handleSubmit = (text: string) => {
-        props.updateAnswer([...props.currentAnswer, text]);
+        if (currentAnswer.includes(text)) return;
+
+        handleUpdateAnswer(currentSection, currentQuestion, [
+            ...currentAnswer,
+            text,
+        ]);
     };
 
     return (
         <BaseMenu
-            index={props.index}
-            heading={props.text}
-            icon={props.icon}
+            index={currentSection * 1000 + currentQuestion}
+            heading={slideData.Text}
+            icon={<SvgWrapper name={slideData.Icon} />}
             subheading="Please select all that apply."
         >
             <div className="flex flex-wrap items-center justify-center gap-5">
                 <AnimatePresence>
-                    {props.selections?.map((selection, index) => (
-                        <motion.div layout key={index}>
-                            <SelectMultipleButton
-                                index={index}
-                                text={selection}
-                                selected={props.currentAnswer.includes(
-                                    selection
-                                )}
-                                onClick={() =>
-                                    props.currentAnswer.includes(selection)
-                                        ? props.updateAnswer(
-                                              props.currentAnswer.filter(
-                                                  (s) => s !== selection
-                                              )
-                                          )
-                                        : props.updateAnswer([
-                                              ...props.currentAnswer,
-                                              selection,
-                                          ])
-                                }
-                            />
-                        </motion.div>
-                    ))}
-                    {props.currentAnswer
-                        .filter((text) => !props.selections?.includes(text))
-                        .map((text, index) => (
+                    {slideData.Selections?.map(
+                        (selection: string, index: number) => (
                             <motion.div layout key={index}>
+                                <SelectMultipleButton
+                                    index={index}
+                                    text={selection}
+                                    selected={currentAnswer.includes(selection)}
+                                    onClick={() =>
+                                        currentAnswer.includes(selection)
+                                            ? handleUpdateAnswer(
+                                                  currentSection,
+                                                  currentQuestion,
+                                                  currentAnswer.filter(
+                                                      (s: string) =>
+                                                          s !== selection
+                                                  )
+                                              )
+                                            : handleUpdateAnswer(
+                                                  currentSection,
+                                                  currentQuestion,
+                                                  [...currentAnswer, selection]
+                                              )
+                                    }
+                                />
+                            </motion.div>
+                        )
+                    )}
+                    {currentAnswer
+                        .filter(
+                            (text: string) =>
+                                !slideData.Selections?.includes(text)
+                        )
+                        .map((text: string, index: number) => (
+                            <motion.div layout key={text}>
                                 <CustomText
-                                    key={index}
+                                    key={text}
                                     text={text}
                                     onClick={() =>
-                                        props.updateAnswer(
-                                            props.currentAnswer.filter(
-                                                (t) => t !== text
+                                        handleUpdateAnswer(
+                                            currentSection,
+                                            currentQuestion,
+                                            currentAnswer.filter(
+                                                (t: string) => t !== text
                                             )
                                         )
                                     }
