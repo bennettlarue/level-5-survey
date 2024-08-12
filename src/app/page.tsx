@@ -63,13 +63,7 @@ export default function Home() {
                     <AnimatePresence mode="wait">
                         <MenuWrapper
                             key={`menu-wrapper-${menu}`}
-                            sectionIndex={section}
-                            sectionCount={MenuConfig.length}
                             config={MenuConfig[section][menu]}
-                            answers={answers[section][menu]}
-                            updateAnswer={(answer: string[]) => {
-                                updateAnswer(section, menu, answer);
-                            }}
                             index={menu}
                         />
                     </AnimatePresence>

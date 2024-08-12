@@ -5,39 +5,29 @@ import YesNo from "./YesNo";
 import SelectOne from "./SelectOne";
 import NumberEntry from "./NumberEntry";
 import TextEntry from "./TextEntry";
-import SvgWrapper from "../Svgs/SvgWrapper";
 import Rate from "./Rate";
 import Section from "./Section";
 
-const MenuWrapper = ({
-    config,
-    answers,
-    updateAnswer,
-    index,
-    sectionIndex,
-    sectionCount,
-}) => {
-    const animations = {
+type Props = {
+    config: any;
+    index: number;
+};
+
+const MenuWrapper = (props: Props) => {
+    const variants = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
         exit: { opacity: 0 },
-        transition: { duration: 0.4, delay: 0.3 },
     };
 
+    const transition = { duration: 0.2, delay: 0.1 };
+
     const renderMenu = () => {
-        switch (config.Type) {
+        switch (props.config.Type) {
             case "Section":
                 return <Section />;
             case "Rate":
-                return (
-                    <Rate
-                        index={index}
-                        currentAnswer={answers}
-                        updateAnswer={updateAnswer}
-                        text={config.Text}
-                        icon={<SvgWrapper name={config.Icon} />}
-                    />
-                );
+                return <Rate />;
             case "SelectMultiple":
                 return <SelectMultiple />;
             case "YesNo":
@@ -45,27 +35,9 @@ const MenuWrapper = ({
             case "SelectOne":
                 return <SelectOne />;
             case "NumberEntry":
-                return (
-                    <NumberEntry
-                        index={index}
-                        currentAnswer={answers}
-                        updateAnswer={updateAnswer}
-                        text={config.Text}
-                        label1={config.Label1}
-                        label2={config.Label2}
-                        icon={<SvgWrapper name={config.Icon} />}
-                    />
-                );
+                return <NumberEntry />;
             case "TextEntry":
-                return (
-                    <TextEntry
-                        index={index}
-                        currentAnswer={answers}
-                        updateAnswer={updateAnswer}
-                        text={config.Text}
-                        icon={<SvgWrapper name={config.Icon} />}
-                    />
-                );
+                return <TextEntry />;
 
             default:
                 return null;
@@ -74,11 +46,12 @@ const MenuWrapper = ({
 
     return (
         <motion.div
-            key={`menu-${index}`}
+            key={`menu-${props.index}`}
             initial="initial"
             animate="animate"
             exit="exit"
-            variants={animations}
+            variants={variants}
+            transition={transition}
             className="w-full h-full"
         >
             {renderMenu()}
