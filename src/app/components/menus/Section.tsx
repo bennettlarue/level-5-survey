@@ -5,6 +5,7 @@ import CheckProgress from "../Svgs/CheckProgress";
 import { useMenu } from "@/app/contexts/MenuContext";
 import { useNavigation } from "@/app/contexts/NavigationContext";
 import { useAnswers } from "@/app/contexts/AnswersContext";
+import SvgWrapper from "../Svgs/SvgWrapper";
 
 type Props = {};
 
@@ -24,7 +25,8 @@ const Section = (props: Props) => {
             index={currentSection * 1000 + currentQuestion} // unique key for each slide
             heading={slideData.Text}
             icon={
-                <CheckProgress
+                <SvgWrapper
+                    name="CheckProgress"
                     sectionIndex={currentSection}
                     sectionCount={menu.length}
                 />
@@ -32,7 +34,7 @@ const Section = (props: Props) => {
             bgColor="bg-l5Pink"
             textColor="text-l5White"
         >
-            <div className="text-l5White space-y-6 opacity-90 max-w-[400px] mx-auto">
+            <div className="text-l5White space-y-6 opacity-90 max-w-[600px] mx-auto">
                 {slideData.Content &&
                     slideData.Content.map((para: string, index: number) => (
                         <Paragraph key={index} text={para} />

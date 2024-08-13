@@ -1,6 +1,7 @@
 import React from "react";
 import CheckIcon from "./CheckIcon";
 import HeartIcon from "./HeartIcon";
+import { useNavigation } from "@/app/contexts/NavigationContext";
 
 type Props = {
     sectionIndex: number;
@@ -34,9 +35,11 @@ const GreenLine = () => {
 };
 
 const CheckProgress = (props: Props) => {
+    const { currentSection, currentQuestion } = useNavigation();
+
     return (
         <div className="flex items-center">
-            {props.sectionIndex === 0 ? (
+            {currentSection === 0 && currentQuestion === 0 ? (
                 <HeartIcon />
             ) : (
                 [...Array(props.sectionCount)].map((_, index) => {

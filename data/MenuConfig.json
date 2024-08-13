@@ -1,98 +1,267 @@
 [
-    [            {
-                "Type": "Section",
-                "Text": "Your experience is unique and valuable.",
-                "Content": [
-                    "We would like to ask you a few questions to get a better understanding of your patient experience.",
-                    "If your comfortable, answering questions could help improve the experience of others."
-                ],
-                "Icon": "HeartIcon"
-            },
-            { 
-                "Type": "SelectMultiple",
-                "Text": "What foods do you like?",
-                "Icon": "HeartIcon",
-                "Selections": [
-                    "Sandwich",
-                    "Soup",
-                    "Salad",
-                    "Dinner",
-                    "Dessert",
-                    "Snack",
-                    "Other"
-                ]
-            },
-            { 
-                "Type": "YesNo",
-                "Text": "Have you had lunch?",
-                "Icon": "HeartIcon"
-            },
-            { 
-                "Type": "SelectOne",
-                "Text": "What is your favorite food?",
-                "Icon": "HeartIcon",
-                "Selections": [
-                    "Sandwich",
-                    "Soup",
-                    "Salad",
-                    "Burger",
-                    "Sushi"
-                ]
-            },
-            {
-                "Type": "NumberEntry",
-                "Text": "How long ago was your last lunch?",
-                "Icon": "HeartIcon",
-                "Label1": "Days",
-                "Label2": "Hours"
-            },
-            {
-                "Type": "TextEntry",
-                "Text": "What is your favorite color?",
-                "Icon": "HeartIcon"
-            },
-            {
-                "Type": "Rate",
-                "Text": "How much do you like sandwiches?",
-                "Icon": "HeartIcon"
-            }
-        ]
-    ,
-    
     [
-            {
-                "Type": "Section",
-                "Text": "Congrats, you made it to section 2!",
-                "Content": [
-                    "Section",
-                    "TextEntry"
-                ],
-                "Icon": "HeartIcon"
-            },
-            
-            {
-                "Type": "Rate",
-                "Text": "How much do you like sandwiches?",
-                "Icon": "HeartIcon"
-            }
-        ],
-        [
-            {
-                "Type": "Section",
-                "Text": "Congrats, you made it to section 3!",
-                "Content": [
-                    "Section",
-                    "TextEntry"
-                ],
-                "Icon": "HeartIcon"
-            },
-            
-            {
-                "Type": "Rate",
-                "Text": "How much do you like sandwiches?",
-                "Icon": "HeartIcon"
-            }
-        ]
-    
-    
+        {
+            "Type": "Section",
+            "Text": "Your experience is unique and valuable.",
+            "Content": [
+                "We would like to ask you a few questions to get a better understanding of your patient experience.",
+                "If your comfortable, answering questions could help improve the experience of others."
+            ],
+            "Icon": "Heart"
+        },
+        {
+            "Type": "YesNo",
+            "Text": "Did you experience any symptoms?",
+            "Icon": "Cross"
+        },
+        {
+            "Type": "SelectMultiple",
+            "Text": "What symptoms did you experience?",
+            "Icon": "Cross",
+            "Selections": [
+                "Fever",
+                "Cough",
+                "Sore throat",
+                "Shortness of breath",
+                "Headache",
+                "Fatigue"
+            ]
+        },
+        {
+            "Type": "NumberEntry",
+            "Text": "How long did your symptoms last?",
+            "Icon": "Clock",
+            "Label1": "Weeks",
+            "Label2": "Months"
+        },
+        {
+            "Type": "SelectMultiple",
+            "Text":"What emotions were you feeling during this time?",
+            "Icon": "Heart",
+            "Selections": [
+                "Happy",
+                "Sad",
+                "Angry",
+                "Stressed",
+                "Anxious"
+            ]
+        },
+        {
+            "Type": "TextEntry",
+            "Text": "Who helped or supported you when your symptoms started?",
+            "Icon": "HeartHand"
+        }
+    ],
+    [
+        {
+            "Type": "Section",
+            "Text": "Understood, thank you for sharing your symptoms with us.",
+            "Content": [
+                "Let’s keep moving. Your unique story is invaluable in improving the experience of others."
+            ],
+            "Icon": "Heart"
+        },
+        {
+            "Type": "YesNo",
+            "Text": "Did you go to the emergency room about your symptoms?",
+            "Icon": "Ambulance"
+        },
+        {
+            "Type": "YesNo",
+            "Text": "Were you hospitalized?",
+            "Icon": "Hospital"
+        },
+        {
+            "Type": "NumberEntry",
+            "Text": "For how long were you in the hospital?",
+            "Icon": "Clock",
+            "Label1": "Days",
+            "Label2": "Weeks"
+        },
+        {
+            "Type": "TextEntry",
+            "Text": "For what reason did you see an HCP (healthcare professional) about your symptoms?",
+            "Icon": "HeadSideVirus"
+        },
+        {
+            "Type": "SelectOne",
+            "Text": "What kind of HCP did you see?",
+            "Icon": "Doctor",
+            "Selections": [
+                "Doctor",
+                "Nurse",
+                "Pharmacist",
+                "Physical Therapist",
+                "Physician's Assistant",
+                "Dietitian"
+            ]
+        },
+        {
+            "Type": "TextEntry",
+            "Text": "Who, if anyone, went with you?",
+            "Icon": "HeartHand"
+        },
+        {
+            "Type": "NumberEntry",
+            "Text": "Approximately how long was it from when your symptoms started until you saw this HCP?",
+            "Icon": "Clock",
+            "Label1": "Days",
+            "Label2": "Weeks"
+        }
+    ],
+    [
+        {
+            "Type": "Section",
+            "Text": "Got it, thanks for sticking with us.",
+            "Content": [
+                "Let’s keep moving. Your unique story is invaluable in improving the experience of others."
+            ],
+            "Icon": "Heart"
+        },
+        {
+            "Type": "YesNo",
+            "Text": "Were you referred to another type of HCP before any testing was done?",
+            "Icon": "Doctor"
+        },
+        {
+            "Type": "SelectOne",
+            "Text": "What type of HCP did you see?",
+            "Icon": "Doctor",
+            "Selections": [
+                "Doctor",
+                "Nurse",
+                "Pharmacist",
+                "Physical Therapist",
+                "Physician's Assistant",
+                "Dietitian"
+            ]
+        },
+        {
+            "Type": "NumberEntry",
+            "Text": "How long after you saw your [_insert HCP type_] were you referred to this other HCP?",
+            "Icon": "Clock",
+            "Label1": "Days",
+            "Label2": "Weeks"
+        },
+        {
+            "Type": "TextEntry",
+            "Text": "Who, if anyone, went with you?",
+            "Icon": "HeartHand"
+        },
+        {
+            "Type": "SelectMultiple",
+            "Text": "What tests did you complete?",
+            "Icon": "Cross",
+            "Selections": [
+                "X-ray",
+                "Ultrasound",
+                "CT Scan",
+                "MRI",
+                "ECG"
+            ]
+        },
+        {
+            "Type": "NumberEntry",
+            "Text": "How long did it take to receive your results?",
+            "Icon": "Clock",
+            "Label1": "Months",
+            "Label2": "Years"
+        },
+        {
+            "Type": "SelectOne",
+            "Text": "What type of HCP gave you your diagnosis?",
+            "Icon": "Doctor",
+            "Selections": [
+                "Doctor",
+                "Nurse",
+                "Pharmacist",
+                "Physical Therapist",
+                "Physician's Assistant",
+                "Dietitian"
+            ]
+        },
+        {
+            "Type": "SelectMultiple",
+            "Text": "What emotions did you feel at your diagnosis?",
+            "Icon": "Heart",
+            "Selections": [
+                "Anger",
+                "Disgust",
+                "Fear",
+                "Happiness",
+                "Sadness",
+                "Surprise",
+                "Neutral"
+            ]
+        },
+        {
+            "Type": "NumberEntry",
+            "Text": "How long after your symptoms started did it take to get diagnosed?",
+            "Icon": "Clock",
+            "Label1": "Days",
+            "Label2": "Weeks"
+        }
+    ],
+    [
+        {
+            "Type": "Section",
+            "Text": "Got it, thanks for sticking with us.",
+            "Content": [
+                "Let’s keep moving. Your unique story is invaluable in improving the experience of others."
+            ],
+            "Icon": "Heart"
+        },
+        {
+            "Type": "TextEntry",
+            "Text": "What was the first treatment you were prescribed?",
+            "Icon": "Medication"
+        },
+        {
+            "Type": "SelectOne",
+            "Text": "What type of HCP prescribed it?",
+            "Icon": "Doctor",
+            "Selections": [
+                "Doctor",
+                "Nurse",
+                "Pharmacist",
+                "Physical Therapist",
+                "Physician's Assistant",
+                "Dietitian"
+            ]
+        },
+        {
+            "Type": "Rate",
+            "Text": "How involved were you in the treatment decision?",
+            "Icon": "Medication"
+        },
+        {
+            "Type": "TextEntry",
+            "Text": "Which HCP did you see for follow-up appointments while on your first treatment?",
+            "Icon": "Doctor"
+        },
+        {
+            "Type": "NumberEntry",
+            "Text": "How often did you see your HCP while on your first treatment?",
+            "Icon": "Clock",
+            "Label1": "Days",
+            "Label2": "Weeks"
+        },
+        {
+            "Type": "SelectMultiple",
+            "Text": "What tests did you complete?",
+            "Icon": "Cross",
+            "Selections": [
+                "X-ray",
+                "Ultrasound",
+                "CT Scan",
+                "MRI",
+                "ECG"
+            ]
+        },
+        {
+            "Type": "TextEntry",
+            "Text": "What was the first treatment you were prescribed?",
+            "Icon": "Medication"
+        }
+    ]
 ]

@@ -11,46 +11,17 @@ import { useNavigation } from "./contexts/NavigationContext";
 import { useAnswers } from "./contexts/AnswersContext";
 
 export default function Home() {
-    const [menu, setMenu] = useState(0);
-    const [section, setSection] = useState(0);
-    const [answers, setAnswers] = useState<string[][][]>(
-        Array.from({ length: MenuConfig.length }, (_, index) => {
-            return Array.from({ length: MenuConfig[index].length }, () => []);
-        })
-    );
+    const { answers, handleUpdateAnswer } = useAnswers();
 
     const { currentSection, currentQuestion, navigateNext, navigatePrevious } =
         useNavigation();
 
-    const updateAnswer = (
-        section: number,
-        question: number,
-        answer: string[]
-    ) => {
-        const newAnswers = [...answers];
-        newAnswers[section][question] = answer;
-        setAnswers(newAnswers);
-    };
-
     const handleNext = () => {
         navigateNext();
-        if (menu < MenuConfig[section].length - 1) {
-            setMenu(menu + 1);
-        } else {
-            setSection(section + 1);
-            setMenu(0);
-        }
     };
 
     const handleBack = () => {
         navigatePrevious();
-        if (menu > 0) {
-            setMenu(menu - 1);
-        } else {
-            console.log("else block");
-            setMenu(MenuConfig[section - 1].length - 1);
-            setSection(section - 1);
-        }
     };
 
     return (
@@ -62,15 +33,17 @@ export default function Home() {
                 <div className="flex-grow overflow-y-auto">
                     <AnimatePresence mode="wait">
                         <MenuWrapper
-                            key={`menu-wrapper-${menu}`}
-                            config={MenuConfig[section][menu]}
-                            index={menu}
+                            key={`menu-wrapper-${currentSection}-${currentQuestion}`}
+                            config={MenuConfig[currentSection][currentQuestion]}
+                            index={currentQuestion * 1000 + currentSection}
                         />
                     </AnimatePresence>
                 </div>
                 <div
                     className={`h-[7px] ${
-                        menu === 0 && section === 0 ? "bg-l5Pink" : ""
+                        currentQuestion === 0 && currentSection === 0
+                            ? "bg-l5Pink"
+                            : ""
                     }`}
                 >
                     <div
@@ -79,11 +52,13 @@ export default function Home() {
                         }
                         style={{
                             width: `${
-                                menu === 0 && section === 0
+                                currentQuestion === 0 && currentSection === 0
                                     ? 0
-                                    : menu === 0
+                                    : currentQuestion === 0
                                     ? 100
-                                    : (100 / MenuConfig[section].length) * menu
+                                    : (100 /
+                                          MenuConfig[currentSection].length) *
+                                      currentQuestion
                             }%`,
                         }}
                     />
@@ -94,9 +69,10 @@ export default function Home() {
                     <Next
                         onClick={handleNext}
                         ready={
-                            answers[section][menu].length > 0 &&
-                            !answers[section][menu].every(
-                                (item) => item === "0"
+                            answers[currentSection][currentQuestion].length >
+                                0 &&
+                            !answers[currentSection][currentQuestion].every(
+                                (item: string) => item === "0"
                             )
                         }
                     />

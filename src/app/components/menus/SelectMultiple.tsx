@@ -35,6 +35,8 @@ const SelectMultiple = (props: Props) => {
         ]);
     };
 
+    console.log(slideData);
+
     return (
         <BaseMenu
             index={currentSection * 1000 + currentQuestion}

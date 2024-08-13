@@ -32,18 +32,9 @@ const BaseMenu = (props: Props) => {
 
     return (
         <div
-            className={`space-y-5 h-full md:px-6 flex items-center justify-center ${props.bgColor} text-${props.textColor}`}
+            className={`space-y-5 h-full md:px-6 flex items-center justify-center ${props.bgColor} text-${props.textColor} rounded-t-md`}
         >
             <div className="space-y-10 text-center px-5">
-                {props.icon && (
-                    <div
-                        className={`flex items-center justify-center ${
-                            props.textColor ? props.textColor : "text-l5Pink"
-                        }`}
-                    >
-                        {props.icon}
-                    </div>
-                )}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={content.key}
@@ -51,17 +42,29 @@ const BaseMenu = (props: Props) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="space-y-4"
                     >
-                        {content.heading && (
-                            <PrimaryHeading
-                                text={content.heading}
-                                textColor={props.textColor}
-                            />
-                        )}
-                        {content.subheading && (
-                            <Note text={content.subheading} />
-                        )}
+                        <div className="space-y-6 mb-12">
+                            {props.icon && (
+                                <div
+                                    className={`flex items-center justify-center ${
+                                        props.textColor
+                                            ? props.textColor
+                                            : "text-l5Pink"
+                                    }`}
+                                >
+                                    {props.icon}
+                                </div>
+                            )}
+                            {content.heading && (
+                                <PrimaryHeading
+                                    text={content.heading}
+                                    textColor={props.textColor}
+                                />
+                            )}
+                            {content.subheading && (
+                                <Note text={content.subheading} />
+                            )}
+                        </div>
                         {content.children}
                     </motion.div>
                 </AnimatePresence>
